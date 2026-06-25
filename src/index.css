@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --accent: 0, 229, 119; /* Cyber Green */
+  --accent-hex: #00E577;
+}
+
+@theme {
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  
+  /* Map Tailwind's red shades to the active theme's CSS variable */
+  --color-red-200: rgba(var(--accent), 0.3);
+  --color-red-300: rgba(var(--accent), 0.5);
+  --color-red-400: rgba(var(--accent), 0.8);
+  --color-red-500: rgb(var(--accent));
+  --color-red-600: rgb(var(--accent));
+  --color-red-700: rgba(var(--accent), 0.85);
+  --color-red-800: rgba(var(--accent), 0.7);
+  --color-red-900: rgba(var(--accent), 0.5);
+  --color-red-950: rgba(var(--accent), 0.1);
+}
+
+/* Custom global resets and enhancements */
+html, body {
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+}
+
+/* Override Vite root defaults to allow full-width designs */
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  border-inline: none !important;
+  text-align: left !important;
+  display: block !important;
+  min-height: auto !important;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--accent));
+  box-shadow: 0 0 10px rgba(var(--accent), 0.5);
+}
+
+/* Custom Glassmorphism styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-navbar {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Ambient glow nodes */
+.glow-accent {
+  box-shadow: 0 0 30px rgba(var(--accent), 0.15);
+}
+
+.glow-text {
+  text-shadow: 0 0 15px rgba(var(--accent), 0.3);
+}
+
+/* Focus glow for inputs */
+input:focus, textarea:focus {
+  border-color: rgb(var(--accent)) !important;
+  box-shadow: 0 0 10px rgba(var(--accent), 0.2) !important;
+}
