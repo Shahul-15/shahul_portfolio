@@ -26,14 +26,14 @@ export default function Footer() {
           <p className="text-[11px] text-neutral-400 font-mono uppercase tracking-widest">
             &copy; 2026 ALL RIGHTS RESERVED.
           </p>
-          <a
+          {/* <a
             href="https://medtech-peach.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs font-sans font-bold text-red-500 hover:underline tracking-wide"
           >
             Design & Developed by MEDTECH
-          </a>
+          </a> */}
         </div>
 
       </div>
