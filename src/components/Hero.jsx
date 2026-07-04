@@ -83,9 +83,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 select-none leading-tight"
           >
-            Thabre Alam Shahul Hameed  
+            Thabre Alam Shahul Hameed{" "} 
             {/* <br className="hidden sm:inline" /> */}
-            <span className="bg-gradient-to-r from-white via-red-200 to-red-600 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(var(--accent),0.2)]">
+            <span className="text-green-500"> {/* bg-gradient-to-r from-white via-red-200 to-red-600 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(var(--accent),0.2)] */}
               A
             </span> 
           </motion.h1>
