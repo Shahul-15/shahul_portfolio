@@ -22,19 +22,18 @@ export const skillsData = {
   tools: [
     "Xilinx Vivado",
     "Xilinx ISE",
-    "ModelSim",
     "MATLAB",
     "LTspice",
     "Proteus VSM",
+    "Keil u vision",
     "VS code",
     "CANoe",
     "GNUradio",
     "Microsoft EXCEL",
     "Microsoft Power BI",
-    "SQL Server Management",
+    "Microsoft SQL Server Management",
     "MYSQL",
-    "ANACONDA",
-    "PostMan"
+    "ANACONDA"
   ],
 
   // To add more analytics capabilities in the future:
