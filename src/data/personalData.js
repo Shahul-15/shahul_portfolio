@@ -1,16 +1,16 @@
 export const personalData = {
   name: "Thabre Alam Shahul Hameed A",
-  title: "Turning Raw Data Into Meaningful Insights",
-  subtitle: "Aspiring Data Analyst | Power BI Enthusiast | Electronics & Communication Engineer",
+  title: "Thabre Alam Shahul Hameed A",
+  subtitle: "Python & Data Science Enthusiast | Electronics & Communication Engineer",
   roles: [
-    "Aspiring Data Analyst",
-    "Power BI Enthusiast",
+    "Python & Data Science Enthusiast",
     "Electronics & Communication Engineer",
     "Dashboard Designer",
     "Problem Solver"
   ],
   about: {
-    description: "I am a passionate Electronics and Communication Engineering student with a deep interest in Data Analytics. I love transforming complex, unstructured datasets into interactive, visually compelling, and business-oriented dashboards that drive strategic decisions. Combining my engineering background's logical problem-solving skills with modern data analytics tools, I build data solutions that bridge technical complexity and business intuition.",
+    description: "I am an Electronics and Communication Engineering graduate with a strong foundation in VLSI Design, Embedded Systems, IoT, Analog and Digital Circuit Design, Digital Signal Processing, and hardware-based system development. Through internships and academic projects, I have gained hands-on experience in digital circuit design and simulation, Digital VLSI design, FIR low-pass filter implementation using Distributed Arithmetic, and the development of an automated Vehicle Number Plate Detection System by integrating image processing with embedded hardware.Alongside my engineering background, I have developed a strong interest in Data Science using Python. I enjoy working with data to uncover meaningful insights through data preprocessing, analysis, visualization, and machine learning techniques. By combining analytical thinking, problem-solving abilities, and programming skills, I strive to build data-driven solutions that bridge engineering concepts with real-world decision-making.
+.",
     pillars: [
       {
         title: "ECE Student",
