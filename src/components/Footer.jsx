@@ -12,7 +12,7 @@ export default function Footer() {
             <SiGoogleanalytics className="w-4 h-4" />
           </div>
           <span className="font-semibold text-xs text-white tracking-widest uppercase">
-            Shahul<span className="text-red-500 font-bold">.</span>Tech
+            Shahul<span className="text-red-500 font-bold">.</span>Portfolio
           </span>
         </div>
 
