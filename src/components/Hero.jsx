@@ -11,7 +11,7 @@ export default function Hero() {
   const roles = [
     "Electronics & Communication Engineer",
     "Embedded System Learner",
-    "Aspiring VLSI Engineer"
+    "Aspiring VLSI Engineer",
     "Python & Data Science Enthusiast",
     "Dashboard Designer",
     "Problem Solver"
