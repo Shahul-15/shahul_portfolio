@@ -99,7 +99,7 @@ export default function Navbar() {
               <div className="absolute inset-0 rounded-lg bg-red-600/20 blur opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <span className="font-semibold text-white tracking-wider text-lg">
-              SHAHUL<span className="text-red-500 font-bold">.</span>ANALYTICS
+              SHAHUL<span className="text-red-500 font-bold">.</span>PORTFOLIO
             </span>
           </a>
 
