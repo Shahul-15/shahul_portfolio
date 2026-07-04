@@ -9,10 +9,10 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const roles = [
-    "Aspiring Data Analyst",
-    "Power BI Enthusiast",
     "Electronics & Communication Engineer",
-    "Dashboard Architect"
+    "Python & Data Science Enthusiast",
+    "Dashboard Designer",
+    "Problem Solver"
   ];
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/30 border border-red-500/20 text-red-500 text-xs font-semibold uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(var(--accent),0.15)] animate-pulse"
           >
             <span className="w-2 h-2 rounded-full bg-red-500" />
-            Data Analyst Portfolio
+            Ready to Work
           </motion.div>
 
           {/* Hero Title */}
@@ -81,10 +81,11 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 select-none leading-tight"
           >
-            Turning Raw Data Into <br className="hidden sm:inline" />
+            Thabre Alam Shahul Hameed A 
+            {/* <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-white via-red-200 to-red-600 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(var(--accent),0.2)]">
               Meaningful Insights
-            </span>
+            </span> */}
           </motion.h1>
 
           {/* Subtitle / Typing animation */}
