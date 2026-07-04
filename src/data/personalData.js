@@ -17,7 +17,7 @@ export const personalData = {
         description: "Pursuing Bachelor of Engineering with a solid foundation in digital logic, circuit design, Embedded systems  and Internet of Things IoT."
       },
       {
-        title: "Data Analytics Enthusiast",
+        title: "Data Science Enthusiast",
         description: "Skilled in extracting, cleaning, organizing, and analyzing datasets using Excel, SQL, and Python."
       },
       {
