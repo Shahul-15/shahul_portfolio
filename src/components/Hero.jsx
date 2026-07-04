@@ -198,6 +198,7 @@ export default function Hero() {
       </div>
 
       {/* Floating Mouse scroll down indicator */}
+      {/*
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
         <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest">Scroll</span>
         <div className="w-[18px] h-[30px] rounded-full border border-neutral-400 p-[3px] flex justify-center">
@@ -208,6 +209,7 @@ export default function Hero() {
           />
         </div>
       </div>
+      */}
     </section>
   );
 }
