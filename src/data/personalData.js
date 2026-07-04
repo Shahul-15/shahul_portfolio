@@ -1,7 +1,7 @@
 export const personalData = {
   name: "Thabre Alam Shahul Hameed A",
   title: "Thabre Alam Shahul Hameed A",
-  subtitle: "Python & Data Science Enthusiast | Electronics & Communication Engineer",
+  subtitle: "Electronics & Communication Engineer | Python & Data Science Enthusiast",
   roles: [
     "Python & Data Science Enthusiast",
     "Electronics & Communication Engineer",
