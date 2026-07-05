@@ -6,7 +6,7 @@ import { GiCpu, GiPieChart, GiCircuitry, GiClick } from 'react-icons/gi';
 // Map pillars to icons
 const pillarIcons = {
   "ECE Student": <GiCpu className="w-8 h-8 text-red-500" />,
-  "Data Science Enthusiast": <GiPieChart className="w-8 h-8 text-red-500" />,
+  "Data Analytics Enthusiast": <GiPieChart className="w-8 h-8 text-red-500" />,
   "Dashboard Designer": <GiCircuitry className="w-8 h-8 text-red-500" />,
   "Problem Solver": <GiClick className="w-8 h-8 text-red-500" />
 };
@@ -103,14 +103,14 @@ export default function About() {
           <span className="text-[10px] font-mono text-neutral-600 uppercase tracking-widest mt-6">Module 01</span>
         </motion.div>
 
-        {/* Dynamic Science Pillar (Pillar 2) */}
+        {/* Dynamic Analytics Pillar (Pillar 2) */}
         <motion.div
           variants={itemVariants}
           className="relative p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-red-600/40 hover:shadow-[0_0_20px_rgba(255,45,45,0.1)] transition-all duration-300 flex flex-col justify-between"
         >
           <div>
             <div className="p-3 bg-red-600/10 rounded-lg w-fit border border-red-600/20 mb-6">
-              {pillarIcons["Data Science Enthusiast"]}
+              {pillarIcons["Data Analytics Enthusiast"]}
             </div>
             <h4 className="text-lg font-semibold text-white mb-2">
               {personalData.about.pillars[1].title}

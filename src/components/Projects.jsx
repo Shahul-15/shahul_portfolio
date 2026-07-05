@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { projectData } from '../data/projectData';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
+import { FiExternalLink, FiChevronLeft, FiChevronRight, FiX, FiCamera } from 'react-icons/fi';
 
 const categories = ["All", "Data Analytics", "ECE & VLSI Projects"];
 
@@ -142,12 +142,176 @@ const CategoryMockup = ({ category, title = "" }) => {
   );
 };
 
+// Reusable individual ProjectCard component with local state to manage active image indexing
+const ProjectCard = ({ project, onImageClick }) => {
+  const [activeImgIndex, setActiveImgIndex] = useState(0);
+  const [imgErrors, setImgErrors] = useState({});
+
+  const hasImages = project.images && project.images.length > 0;
+  const isImgFailed = imgErrors[activeImgIndex];
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.4 }}
+      className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-red-600/30 hover:shadow-[0_4px_30px_rgba(255,45,45,0.03)] transition-all duration-300 flex flex-col justify-between"
+    >
+      <div>
+        {/* Dynamic Image / SVG Mockup container */}
+        <div className="relative w-full h-[140px] rounded-xl bg-black/40 border border-white/5 mb-6 overflow-hidden flex items-center justify-center group/img">
+          {hasImages && !isImgFailed ? (
+            <>
+              <img
+                src={project.images[activeImgIndex]}
+                alt={`${project.title} screenshot ${activeImgIndex + 1}`}
+                onError={() => setImgErrors((prev) => ({ ...prev, [activeImgIndex]: true }))}
+                onClick={() => onImageClick(project, activeImgIndex)}
+                className="w-full h-full object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-500 select-none"
+              />
+
+              {/* Slider arrow overlays (only show if multiple photos exist) */}
+              {project.images.length > 1 && (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveImgIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+                    }}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/80 border border-white/10 text-white opacity-0 group-hover/img:opacity-100 transition-opacity hover:bg-red-500 hover:border-red-500/50 cursor-pointer z-10"
+                    aria-label="Previous Image"
+                  >
+                    <FiChevronLeft className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveImgIndex((prev) => (prev + 1) % project.images.length);
+                    }}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-black/80 border border-white/10 text-white opacity-0 group-hover/img:opacity-100 transition-opacity hover:bg-red-500 hover:border-red-500/50 cursor-pointer z-10"
+                    aria-label="Next Image"
+                  >
+                    <FiChevronRight className="w-3.5 h-3.5" />
+                  </button>
+
+                  {/* Slider dots indicators */}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none">
+                    {project.images.map((_, idx) => (
+                      <span
+                        key={idx}
+                        className={`w-1.5 h-1.5 rounded-full transition-all ${
+                          idx === activeImgIndex ? 'bg-red-500 w-3' : 'bg-white/40'
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Photos count badge */}
+                  <span className="absolute top-3 right-3 px-1.5 py-0.5 rounded text-[8px] font-mono bg-black/70 text-neutral-300 border border-white/10 flex items-center gap-1 z-10">
+                    <FiCamera className="w-2.5 h-2.5" /> {project.images.length}
+                  </span>
+                </>
+              )}
+            </>
+          ) : (
+            <CategoryMockup category={project.category} title={project.title} />
+          )}
+
+          <span className="absolute top-3 left-3 px-2 py-0.5 rounded text-[9px] font-mono uppercase bg-neutral-900/80 text-neutral-400 border border-white/10">
+            {project.category}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="text-lg font-bold text-white mb-3 group-hover:text-red-500 transition-colors">
+          {project.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-xs text-neutral-400 leading-relaxed font-sans mb-6">
+          {project.description}
+        </p>
+
+        {/* Tech Tags */}
+        <div className="flex flex-wrap gap-1.5 mb-6">
+          {project.techStack.map((tech) => (
+            <span
+              key={tech}
+              className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/5 text-neutral-300 border border-white/5"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Action Links */}
+      <div className="flex items-center gap-4 pt-4 border-t border-white/5 mt-auto">
+        {project.demo !== "#" && (
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-xs text-neutral-400 hover:text-red-500 transition-colors"
+          >
+            <FiExternalLink className="w-4 h-4" />
+            Live Demo
+          </a>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [lightboxData, setLightboxData] = useState({ isOpen: false, project: null, activeIndex: 0 });
 
   const filteredProjects = activeFilter === "All"
     ? projectData
     : projectData.filter(proj => proj.category === activeFilter);
+
+  const openLightbox = (project, index) => {
+    setLightboxData({
+      isOpen: true,
+      project,
+      activeIndex: index
+    });
+  };
+
+  const closeLightbox = () => {
+    setLightboxData({ isOpen: false, project: null, activeIndex: 0 });
+  };
+
+  const nextLightboxImage = () => {
+    if (!lightboxData.project || !lightboxData.project.images) return;
+    setLightboxData(prev => ({
+      ...prev,
+      activeIndex: (prev.activeIndex + 1) % prev.project.images.length
+    }));
+  };
+
+  const prevLightboxImage = () => {
+    if (!lightboxData.project || !lightboxData.project.images) return;
+    setLightboxData(prev => ({
+      ...prev,
+      activeIndex: (prev.activeIndex - 1 + prev.project.images.length) % prev.project.images.length
+    }));
+  };
+
+  // Keyboard navigation support inside full screen Lightbox modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!lightboxData.isOpen) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextLightboxImage();
+      if (e.key === 'ArrowLeft') prevLightboxImage();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightboxData]);
 
   return (
     <section id="projects" className="relative py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/5">
@@ -183,66 +347,84 @@ export default function Projects() {
       <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project) => (
-            <motion.div
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4 }}
-              key={project.id}
-              className="group relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-red-600/30 hover:shadow-[0_4px_30px_rgba(255,45,45,0.03)] transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                {/* SVG mock graph visual */}
-                <div className="relative w-full h-[120px] rounded-xl bg-black/40 border border-white/5 mb-6 overflow-hidden flex items-center justify-center">
-                  <CategoryMockup category={project.category} title={project.title} />
-                  <span className="absolute top-3 left-3 px-2 py-0.5 rounded text-[9px] font-mono uppercase bg-neutral-900/80 text-neutral-400 border border-white/10">
-                    {project.category}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-red-500 transition-colors">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-xs text-neutral-400 leading-relaxed font-sans mb-6">
-                  {project.description}
-                </p>
-
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/5 text-neutral-300 border border-white/5"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Links */}
-              <div className="flex items-center gap-4 pt-4 border-t border-white/5 mt-auto">
-                {project.demo !== "#" && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs text-neutral-400 hover:text-red-500 transition-colors"
-                  >
-                    <FiExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </a>
-                )}
-              </div>
-
-            </motion.div>
+            <ProjectCard 
+              key={project.id} 
+              project={project} 
+              onImageClick={openLightbox} 
+            />
           ))}
         </AnimatePresence>
       </motion.div>
+
+      {/* Full screen Lightbox overlay */}
+      <AnimatePresence>
+        {lightboxData.isOpen && lightboxData.project && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/95 flex flex-col items-center justify-center p-4 backdrop-blur-md"
+            onClick={closeLightbox}
+          >
+            {/* Close Button */}
+            <button
+              onClick={closeLightbox}
+              className="absolute top-6 right-6 p-2 rounded-full bg-white/5 border border-white/10 text-neutral-400 hover:text-white hover:bg-white/10 hover:border-red-500/50 transition-all cursor-pointer z-50"
+            >
+              <FiX className="w-5 h-5" />
+            </button>
+
+            {/* Carousel active image container */}
+            <div 
+              className="relative max-w-5xl max-h-[80vh] flex items-center justify-center group"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {lightboxData.project.images && lightboxData.project.images.length > 1 && (
+                <>
+                  <button
+                    onClick={prevLightboxImage}
+                    className="absolute -left-4 md:-left-16 p-3 rounded-full bg-black/80 border border-white/10 text-white hover:bg-red-500 hover:border-red-500/50 hover:scale-105 transition-all cursor-pointer z-10"
+                  >
+                    <FiChevronLeft className="w-6 h-6" />
+                  </button>
+                  <button
+                    onClick={nextLightboxImage}
+                    className="absolute -right-4 md:-right-16 p-3 rounded-full bg-black/80 border border-white/10 text-white hover:bg-red-500 hover:border-red-500/50 hover:scale-105 transition-all cursor-pointer z-10"
+                  >
+                    <FiChevronRight className="w-6 h-6" />
+                  </button>
+                </>
+              )}
+
+              <motion.img
+                key={lightboxData.activeIndex}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3 }}
+                src={lightboxData.project.images[lightboxData.activeIndex]}
+                alt={`${lightboxData.project.title} full view`}
+                className="max-w-full max-h-[75vh] object-contain rounded-lg border border-white/10 shadow-2xl select-none"
+              />
+            </div>
+
+            {/* Caption Text details */}
+            <div 
+              className="mt-6 text-center max-w-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h4 className="text-lg font-bold text-white mb-2">{lightboxData.project.title}</h4>
+              {lightboxData.project.images && lightboxData.project.images.length > 1 && (
+                <p className="text-xs font-mono text-red-500 font-semibold mb-2">
+                  Image {lightboxData.activeIndex + 1} of {lightboxData.project.images.length}
+                </p>
+              )}
+              <p className="text-xs text-neutral-400 font-sans leading-relaxed">{lightboxData.project.description}</p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 }

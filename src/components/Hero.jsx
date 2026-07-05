@@ -9,12 +9,10 @@ export default function Hero() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const roles = [
+    "Aspiring Data Analyst",
+    "Power BI Enthusiast",
     "Electronics & Communication Engineer",
-    "Embedded System Learner",
-    "Aspiring VLSI Engineer",
-    "Python & Data Science Enthusiast",
-    "Dashboard Designer",
-    "Problem Solver"
+    "Dashboard Architect"
   ];
 
   useEffect(() => {
@@ -73,7 +71,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/30 border border-red-500/20 text-red-500 text-xs font-semibold uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(var(--accent),0.15)] animate-pulse"
           >
             <span className="w-2 h-2 rounded-full bg-red-500" />
-            Ready to Internship and Work
+            Data Analyst Portfolio
           </motion.div>
 
           {/* Hero Title */}
@@ -83,11 +81,10 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 select-none leading-tight"
           >
-            Thabre Alam Shahul Hameed{" "} 
-            {/* <br className="hidden sm:inline" /> */}
-            <span className="text-green-500"> {/* bg-gradient-to-r from-white via-red-200 to-red-600 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(var(--accent),0.2)] */}
-              A
-            </span> 
+            Turning Raw Data Into <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-white via-red-200 to-red-600 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(var(--accent),0.2)]">
+              Meaningful Insights
+            </span>
           </motion.h1>
 
           {/* Subtitle / Typing animation */}
@@ -200,7 +197,6 @@ export default function Hero() {
       </div>
 
       {/* Floating Mouse scroll down indicator */}
-      {/*
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity">
         <span className="text-[10px] font-mono text-neutral-400 uppercase tracking-widest">Scroll</span>
         <div className="w-[18px] h-[30px] rounded-full border border-neutral-400 p-[3px] flex justify-center">
@@ -211,7 +207,6 @@ export default function Hero() {
           />
         </div>
       </div>
-      */}
     </section>
   );
 }
